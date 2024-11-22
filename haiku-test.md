@@ -1086,79 +1086,63 @@ When modifying **labels** and **taints** in an EKS cluster, the primary goal is 
   - Workloads are rescheduled correctly during the rollout.
 
 
-### **9. Testing Application-Specific Node Pools**
- - Apply specific labels and taints to dedicated node pools for application segregation.
-
-  -
-  - Applications are scheduled only on their dedicated node pools based on labels and taints.
-  - No cross-pool workload interference occurs.
-
-
-### **10. Monitoring and Alerting Validation**
- - Ensure monitoring and alerting systems detect misconfigured labels or taints.
-
-  -
-  - Alerts are triggered for incorrectly configured labels or taints.
-  - Monitoring tools (e.g., Prometheus, CloudWatch) display accurate node and pod status.
+> Testing Application-Specific Node Pools
+  
+  - Apply specific labels and taints to dedicated node pools for application segregation.
+    - Applications are scheduled only on their dedicated node pools based on labels and taints.
+    - No cross-pool workload interference occurs.
 
 
----------------------------------
+> Monitoring and Alerting Validation
 
-
-When making **node changes for workloads** in your EKS cluster, it's critical to validate that the changes do not impact workload availability, performance, or stability. Below are the key validation areas, scenarios, expected outcomes, and validation steps for this process:
-
----
-
-### **1. Adding a New Node Group**
- - Add a new node group to support specific workloads or provide additional resources.
-
-  -
-  - The new node group is successfully created and registered with the cluster.
-  - Workloads can be scheduled on the new nodes based on affinity and taint configurations.
+  - Ensure monitoring and alerting systems detect misconfigured labels or taints.
+    - Alerts are triggered for incorrectly configured labels or taints.
+    - Monitoring tools (e.g., Prometheus, CloudWatch) display accurate node and pod status.
 
 
 
-### **2. Draining and Removing Old Nodes**
- - Decommission old nodes to replace them with upgraded ones.
+### **node changes for workloads**
 
-  -
-  - Workloads are gracefully rescheduled to other nodes.
-  - No disruption or downtime occurs during node removal.
-
-
-
-### **3. Changing Instance Types for a Node Group**
- - Change the instance type for a node group to optimize cost or performance.
-
-  -
-  - New nodes with the updated instance type are created.
-  - Workloads migrate seamlessly to the new nodes without performance issues.
+> Adding a New Node Group
+  
+  - Add a new node group to support specific workloads or provide additional resources.
+    - The new node group is successfully created and registered with the cluster.
+    - Workloads can be scheduled on the new nodes based on affinity and taint configurations.
 
 
-### **4. Migrating Workloads to a Dedicated Node Group**
- - Migrate specific workloads to a dedicated node group for resource isolation or compliance.
-
-  -
-  - Workloads are scheduled only on the dedicated node group.
-  - Other workloads remain unaffected.
-
+> Draining and Removing Old Nodes
+  
+  - Decommission old nodes to replace them with upgraded ones.
+    - Workloads are gracefully rescheduled to other nodes.
+    - No disruption or downtime occurs during node removal.
 
 
-### **5. Scaling Up Node Groups**
- - Increase the number of nodes in a node group to handle increased workload demand.
+> Changing Instance Types for a Node Group
 
-  -
-  - New nodes are provisioned and registered with the cluster.
-  - Workloads are scheduled evenly across the available nodes.
+  - Change the instance type for a node group to optimize cost or performance.
+    - New nodes with the updated instance type are created.
+    - Workloads migrate seamlessly to the new nodes without performance issues.
 
+
+> Migrating Workloads to a Dedicated Node Group**
+  
+  - Migrate specific workloads to a dedicated node group for resource isolation or compliance.
+    - Workloads are scheduled only on the dedicated node group.
+    - Other workloads remain unaffected.
+
+
+> Scaling Up Node Groups
+  
+  - Increase the number of nodes in a node group to handle increased workload demand.
+    - New nodes are provisioned and registered with the cluster.
+    - Workloads are scheduled evenly across the available nodes.
 
 
 > Scaling Down Node Groups
   
-   - Reduce the number of nodes in a node group during periods of low workload demand.
+  - Reduce the number of nodes in a node group during periods of low workload demand.
     - Nodes are gracefully terminated without impacting running workloads.
     - Pods are rescheduled onto remaining nodes.
-
 
 
 > Tainting Nodes for Specific Workloads
@@ -1168,13 +1152,11 @@ When making **node changes for workloads** in your EKS cluster, it's critical to
     - Non-tolerating workloads are evicted from tainted nodes.
 
 
-
-> erifying Network Connectivity for New Nodes
+> Verifying Network Connectivity for New Nodes
  
   - Ensure new nodes are properly configured for networking (e.g., VPC CNI, security groups).
     - New nodes can communicate with other nodes and external resources.
     - No network-related errors occur in workloads.
-
 
 
 > Validating Resource Requests and Limits
@@ -1184,12 +1166,10 @@ When making **node changes for workloads** in your EKS cluster, it's critical to
     - Nodes are not overcommitted, and pod performance remains stable.
 
 
-
 > Verifying Node Health and Metrics
  
   - Ensure the health and performance of nodes after changes.
     - Nodes remain in a ready state, and metrics such as CPU, memory, and disk utilization are within acceptable thresholds.
-
 
 
 > Testing High Availability

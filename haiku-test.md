@@ -798,292 +798,238 @@ Changing the instance types in your EKS cluster involves ensuring that the new i
 
 
 
-### **8. Add-on Compatibility Validation**
- - Validate that Kubernetes add-ons (e.g., CoreDNS, VPC CNI) function correctly on the new instance type.
-
-  -
-  - All add-ons remain functional and compatible with the new instance type.
-  - No disruptions to cluster networking, DNS resolution, or logging.
-
-
-### **9. Storage Compatibility Validation**
- - Ensure EBS volumes and other storage solutions are compatible with the new instance type.
-
-  -
-  - Storage volumes attach and function correctly on the new instance type.
-  - No data loss or I/O issues occur during the transition.
+> Add-on Compatibility Validation
+  
+  - Validate that Kubernetes add-ons (e.g., CoreDNS, VPC CNI) function correctly on the new instance type.
+    - All add-ons remain functional and compatible with the new instance type.
+    - No disruptions to cluster networking, DNS resolution, or logging.
 
 
-### **10. Failover and High Availability Testing**
- - Simulate node failures with the new instance type and verify failover behavior.
+> Storage Compatibility Validation
+  
+  - Ensure EBS volumes and other storage solutions are compatible with the new instance type.
+    - Storage volumes attach and function correctly on the new instance type.
+    - No data loss or I/O issues occur during the transition.
 
-  -
-  - Workloads are rescheduled to healthy nodes without disruption.
-  - Cluster maintains high availability during node failures.
+
+> Failover and High Availability Testing
+  
+  - Simulate node failures with the new instance type and verify failover behavior.
+    - Workloads are rescheduled to healthy nodes without disruption.
+    - Cluster maintains high availability during node failures.
 
 
 
-### **11. Security and IAM Validation**
- - Validate that IAM roles and security configurations are correctly applied to the new instance type.
-
-  -
-  - New nodes have the correct IAM roles and permissions.
-  - Security groups allow required traffic without unnecessary exposure.
+> Security and IAM Validation
+  
+  - Validate that IAM roles and security configurations are correctly applied to the new instance type.
+    - New nodes have the correct IAM roles and permissions.
+    - Security groups allow required traffic without unnecessary exposure.
 
 
 -----------------------------------
 
-Updating the AMI ID in an AWS EKS cluster requires careful validation to ensure that the new AMI works seamlessly with the cluster and its workloads. Below are the key scenarios, expected outcomes, and validation steps to consider during an **AMI ID update**:
+### **AMI ID update**
 
----
-
-### **1. Node Group AMI Update**
- - Update the AMI ID for an existing managed or self-managed node group.
-
-  -
-  - Nodes with the new AMI are created and added to the cluster.
-  - Existing workloads migrate seamlessly to the new nodes without disruption.
-  - Old nodes are drained and terminated gracefully.
+> Node Group AMI Update
+  
+  - Update the AMI ID for an existing managed or self-managed node group.
+    - Nodes with the new AMI are created and added to the cluster.
+    - Existing workloads migrate seamlessly to the new nodes without disruption.
+    - Old nodes are drained and terminated gracefully.
 
 
-### **2. Compatibility Testing**
- - Verify that the new AMI is compatible with the Kubernetes version and installed add-ons.
-
-  -
-  - New nodes run without issues, and all add-ons function as expected.
-  - No errors are reported in node or system logs.
+>> Compatibility Testing
+  
+  - Verify that the new AMI is compatible with the Kubernetes version and installed add-ons.
+    - New nodes run without issues, and all add-ons function as expected.
+    - No errors are reported in node or system logs.
 
 
 
-### **3. Workload Rescheduling**
- - Test the rescheduling of existing workloads onto nodes with the new AMI.
-
-  -
-  - Workloads are rescheduled without errors or downtime.
-  - Application performance remains consistent after rescheduling.
-
-
-
-### **4. Security Patches and Updates Validation**
- - Ensure that the new AMI includes the required security patches and updates.
-
-  -
-  - New AMI resolves all previously identified vulnerabilities.
-  - Nodes pass security and compliance scans.
+> Workload Rescheduling
+  
+  - Test the rescheduling of existing workloads onto nodes with the new AMI.
+    - Workloads are rescheduled without errors or downtime.
+    - Application performance remains consistent after rescheduling.
 
 
 
-### **5. Networking Validation**
- - Test networking functionality on nodes with the new AMI, including VPC CNI plugin and ingress/egress traffic.
-
-  -
-  - Pods can communicate internally within the cluster and externally to the internet.
-  - No disruptions to ingress/egress traffic flows.
-
-
-### **6. Storage Compatibility**
- - Ensure storage solutions (e.g., EBS volumes, EFS, PVCs) work correctly with the new AMI.
-
-  -
-  - Storage volumes are correctly attached to nodes with the new AMI.
-  - No data loss or I/O issues occur during the update.
+> Security Patches and Updates Validation
+ 
+  - Ensure that the new AMI includes the required security patches and updates.
+    - New AMI resolves all previously identified vulnerabilities.
+    - Nodes pass security and compliance scans.
 
 
+> Networking Validation
+  
+  - Test networking functionality on nodes with the new AMI, including VPC CNI plugin and ingress/egress traffic.
+    - Pods can communicate internally within the cluster and externally to the internet.
+    - No disruptions to ingress/egress traffic flows.
 
-### **7. Autoscaling and Scaling Down**
- - Validate autoscaling and node scaling behavior with the new AMI.
 
-  -
-  - Cluster scales up and down as expected, adding and removing nodes with the updated AMI.
-  - Pods are rescheduled to new nodes during scaling operations.
+> Storage Compatibility
+  
+  - Ensure storage solutions (e.g., EBS volumes, EFS, PVCs) work correctly with the new AMI.
+    - Storage volumes are correctly attached to nodes with the new AMI.
+    - No data loss or I/O issues occur during the update.
 
 
 
-### **8. Add-on Compatibility Testing**
- - Verify that Kubernetes add-ons (e.g., CoreDNS, kube-proxy, VPC CNI) remain functional after the AMI update.
-
-  -
-  - Add-ons operate without errors or performance degradation.
-  - Logs for add-on pods show no compatibility issues.
-
-
-
-### **9. Performance Testing**
- - Benchmark the performance of nodes with the new AMI compared to previous nodes.
-
-  -
-  - Performance metrics (e.g., CPU usage, memory utilization, latency) are comparable or improved.
-  - No performance degradation in critical workloads.
+> Autoscaling and Scaling Down
+ 
+  - Validate autoscaling and node scaling behavior with the new AMI.
+    - Cluster scales up and down as expected, adding and removing nodes with the updated AMI.
+    - Pods are rescheduled to new nodes during scaling operations.
 
 
 
-### **10. Failover Testing**
- - Test node failover and workload recovery on nodes with the new AMI.
+> Add-on Compatibility Testing
+  
+  - Verify that Kubernetes add-ons (e.g., CoreDNS, kube-proxy, VPC CNI) remain functional after the AMI update.
+    - Add-ons operate without errors or performance degradation.
+    - Logs for add-on pods show no compatibility issues.
 
-  -
-  - Workloads recover and are rescheduled without data loss or prolonged downtime.
-  - Cluster maintains high availability during node failures.
+
+
+> Performance Testing
+  
+  - Benchmark the performance of nodes with the new AMI compared to previous nodes.
+    - Performance metrics (e.g., CPU usage, memory utilization, latency) are comparable or improved.
+    - No performance degradation in critical workloads.
+
+
+
+> Failover Testing
+  
+  - Test node failover and workload recovery on nodes with the new AMI.
+    - Workloads recover and are rescheduled without data loss or prolonged downtime.
+    - Cluster maintains high availability during node failures.
 
 
 -----------------------------------------------------------
 
-When changing **disk size** or **volume type** in an AWS EKS environment, the primary goal is to ensure that the updated configurations do not disrupt workloads, maintain data integrity, and meet performance expectations. Here are the **key validation areas**, along with scenarios, expected outcomes, and validation steps:
+### **DISK** or **VOLUME** change.
 
----
-
-### **1. Increase Disk Size of an Existing Volume**
- - Increase the size of an existing EBS volume attached to a workload.
-
-  -
-  - The volume is resized successfully without data loss.
-  - Applications using the volume can utilize the increased capacity.
+> Increase Disk Size of an Existing Volume
+  
+  - Increase the size of an existing EBS volume attached to a workload.
+    - The volume is resized successfully without data loss.
+    - Applications using the volume can utilize the increased capacity.
   
 
-### **2. Change Volume Type (e.g., gp2 to gp3)**
- - Change the type of an EBS volume to optimize for cost or performance (e.g., gp2 to gp3).
-
-  -
-  - The volume type is updated successfully without data corruption.
-  - Performance metrics (IOPS, throughput) align with the specifications of the new volume type.
-
-
-### **3. Migrate Workloads to a New Volume**
- - Replace an existing volume with a new one (e.g., to use a different type or configuration).
-
-  -
-  - Workloads are successfully migrated to the new volume without downtime or data loss.
-  - Applications can read and write data to the new volume.
+> Change the volume type
+  
+  - Change the type of an EBS volume to optimize for cost or performance (e.g., gp2 to gp3).
+    - The volume type is updated successfully without data corruption.
+    - Performance metrics (IOPS, throughput) align with the specifications of the new volume type.
 
 
-### **4. Validate Disk Performance After Changes**
- - Test the performance of resized or updated volumes to ensure they meet workload requirements.
-
-  -
-  - IOPS and throughput match the specifications of the resized or updated volume.
-  - Applications maintain consistent performance under load.
-
-
-### **5. Validate Volume Expansion for Stateful Workloads**
- - Expand the disk size for stateful applications such as databases (e.g., MySQL, PostgreSQL).
-
-  -
-  - The application recognizes the increased disk capacity.
-  - Data integrity and application performance are maintained.
+> Migrate Workloads to a New Volume
+  
+  - Replace an existing volume with a new one (e.g., to use a different type or configuration).
+    - Workloads are successfully migrated to the new volume without downtime or data loss.
+    - Applications can read and write data to the new volume.
 
 
-### **6. Validate Backup and Recovery**
- - Ensure backups and snapshots work as expected after resizing or changing the volume type.
-
-  -
-  - Snapshots of the modified volume are created successfully.
-  - Data can be restored from snapshots without corruption.
-
-
-### **7. Validate Multi-AZ Data Replication (for EFS or StatefulSets)**
- - For multi-AZ setups, ensure that data replication works correctly after changing volume size or type.
-
-  -
-  - Data replication remains consistent across availability zones.
-  - No delays or failures occur in data synchronization.
+> Validate Disk Performance After Changes
+  
+  - Test the performance of resized or updated volumes to ensure they meet workload requirements.
+    - IOPS and throughput match the specifications of the resized or updated volume.
+    - Applications maintain consistent performance under load.
 
 
-### **8. Validate Node Auto-Scaling with Updated Volumes**
- - Test the behavior of auto-scaling groups with instances using updated disk sizes or types.
+> Validate Volume Expansion for Stateful Workloads
+  
+  - Expand the disk size for stateful applications such as databases (e.g., MySQL, PostgreSQL).
+    - The application recognizes the increased disk capacity.
+    - Data integrity and application performance are maintained.
 
-  -
-  - New nodes are created with the updated disk configuration.
-  - No issues arise during workload rescheduling or node scaling events.
+
+> Validate Backup and Recovery
+  
+  - Ensure backups and snapshots work as expected after resizing or changing the volume type.
+    - Snapshots of the modified volume are created successfully.
+    - Data can be restored from snapshots without corruption.
+
+
+> Validate Multi-AZ Data Replication (for EFS or StatefulSets)
+  
+  - For multi-AZ setups, ensure that data replication works correctly after changing volume size or type.
+    - Data replication remains consistent across availability zones.
+    - No delays or failures occur in data synchronization.
+
+
+> Validate Node Auto-Scaling with Updated Volumes
+  
+  - Test the behavior of auto-scaling groups with instances using updated disk sizes or types.
+    - New nodes are created with the updated disk configuration.
+    - No issues arise during workload rescheduling or node scaling events.
 
 
 
-### **9. Test Failure Scenarios**
- - Simulate disk or volume failures to validate recovery processes after size or type changes.
+> Test Failure Scenarios
+  
+  - Simulate disk or volume failures to validate recovery processes after size or type changes.
+    - Applications recover gracefully from disk-related failures.
+    - No data loss or prolonged downtime occurs.
 
-  -
-  - Applications recover gracefully from disk-related failures.
-  - No data loss or prolonged downtime occurs.
 
-
-### **10. Verify Cost Implications**
- - Assess the cost impact of changing disk size or volume type.
-
-  -
-  - The updated configuration aligns with budgetary constraints.
-  - No unexpected increases in storage costs occur.
+> Verify Cost Implications
+ 
+  - Assess the cost impact of changing disk size or volume type.
+    - The updated configuration aligns with budgetary constraints.
+    - No unexpected increases in storage costs occur.
 
 
 
 ----------------------------------------------------
 
-When modifying **labels** and **taints** in an EKS cluster, the primary goal is to ensure that the changes do not disrupt workload scheduling or cluster operations. Labels and taints are critical for workload placement and resource segregation, so validating these changes is essential. Below are key scenarios, expected outcomes, and validation steps:
+### **LABELS** and **TAINTS**
 
----
-
-### **1. Adding/Modifying Node Labels**
- - Add or modify labels on nodes to support workload placement based on specific scheduling rules.
-
-  -
-  - Nodes have the correct labels applied.
-  - Workloads with `nodeSelector` or `nodeAffinity` rules are scheduled correctly.
+> Adding/Modifying Node Labels
+  
+  - Add or modify labels on nodes to support workload placement based on specific scheduling rules.
+    - Nodes have the correct labels applied.
+    - Workloads with nodeSelector or nodeAffinity rules are scheduled correctly.
 
 
-### **2. Removing Node Labels**
- - Remove unused or incorrect labels from nodes.
-
-  -
-  - Labels are removed without impacting workloads that no longer depend on them.
-  - No orphaned workloads remain unscheduled.
+> Removing Node Labels
+ 
+  - Remove unused or incorrect labels from nodes.
+    - Labels are removed without impacting workloads that no longer depend on them.
+    - No orphaned workloads remain unscheduled.
 
 
 
-### **3. Adding/Modifying Taints on Nodes**
- - Add or modify taints on nodes to control which workloads can run on them.
-
-  -
-  - Nodes have the correct taints applied.
-  - Only workloads with matching tolerations are scheduled on tainted nodes.
-  - Non-tolerating workloads are evicted or unscheduled.
-
-
-### **4. Removing Taints from Nodes**
- - Remove taints from nodes to allow general-purpose workloads to run on them.
-
-  -
-  - Taints are removed without impacting existing workloads.
-  - Non-tolerating workloads can now be scheduled on the previously tainted nodes.
+> Adding/Modifying Taints on Nodes
+  
+  - Add or modify taints on nodes to control which workloads can run on them.
+    - Nodes have the correct taints applied.
+    - Only workloads with matching tolerations are scheduled on tainted nodes.
+    - Non-tolerating workloads are evicted or unscheduled.
 
 
-
-### **5. Testing Node Affinity Rules**
- - Modify labels and test `nodeAffinity` rules for workload placement.
-
-  -
-  - Workloads with `requiredDuringSchedulingIgnoredDuringExecution` are strictly scheduled on nodes matching the affinity rules.
-  - Workloads with `preferredDuringSchedulingIgnoredDuringExecution` show preference for specific nodes.
+> Testing Tolerations with DaemonSets
+  
+  - Apply taints to nodes and validate that DaemonSets with appropriate tolerations are scheduled on all required nodes.
+    - DaemonSet pods are scheduled on nodes with matching tolerations.
+    - Nodes without tolerations are not scheduled with DaemonSet pods.
 
 
-### **6. Testing Tolerations with DaemonSets**
- - Apply taints to nodes and validate that DaemonSets with appropriate tolerations are scheduled on all required nodes.
-
-  -
-  - DaemonSet pods are scheduled on nodes with matching tolerations.
-  - Nodes without tolerations are not scheduled with DaemonSet pods.
-
-
-### **7. Testing Taints with Auto-Scaling**
- - Apply taints to nodes in an auto-scaling group and validate the behavior during scale-up and scale-down events.
-
-  -
-  - New nodes inherit the taints from the launch template or configuration.
-  - Workloads respect taint tolerations during auto-scaling.
+> Testing Taints with Auto-Scaling
+  
+  - Apply taints to nodes in an auto-scaling group and validate the behavior during scale-up and scale-down events.
+    - New nodes inherit the taints from the launch template or configuration.
+    - Workloads respect taint tolerations during auto-scaling.
 
 
-### **8. Testing Labels and Taints During Node Rollout**
- - Perform a rolling update of node labels and taints during a node group upgrade.
-
-  -
-  - Nodes are replaced with updated labels and taints without disrupting workloads.
-  - Workloads are rescheduled correctly during the rollout.
+> Testing Labels and Taints During Node Rollout
+  
+  - Perform a rolling update of node labels and taints during a node group upgrade.
+    - Nodes are replaced with updated labels and taints without disrupting workloads.
+    - Workloads are rescheduled correctly during the rollout.
 
 
 > Testing Application-Specific Node Pools
@@ -1101,7 +1047,7 @@ When modifying **labels** and **taints** in an EKS cluster, the primary goal is 
 
 
 
-### **node changes for workloads**
+### **NODE CHANGES FOR WORKLOADS**
 
 > Adding a New Node Group
   

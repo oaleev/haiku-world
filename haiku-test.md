@@ -771,30 +771,27 @@ Changing the instance types in your EKS cluster involves ensuring that the new i
   - No disruption to pod-to-pod communication or ingress/egress traffic.
 
 
-### **5. Pod Affinity/Anti-Affinity Validation**
- - Verify that pod affinity and anti-affinity rules work correctly with the new instance type.
-
-  -
-  - Pods are scheduled based on defined affinity/anti-affinity rules.
-  - No scheduling conflicts or unexpected placements occur.
-
-
-
-### **6. Scaling Behavior Validation**
- - Test cluster scaling with the new instance type (both upscaling and downscaling).
-
-  -
-  - Cluster scales up and down based on workload demands.
-  - No delays in node provisioning or pod scheduling.
+> Pod Affinity/Anti-Affinity Validation
+  
+  - Verify that pod affinity and anti-affinity rules work correctly with the new instance type.
+    - Pods are scheduled based on defined affinity/anti-affinity rules.
+    - No scheduling conflicts or unexpected placements occur.
 
 
 
-### **7. Cost Efficiency Validation**
- - Assess the cost impact of moving to the new instance type.
+> Scaling Behavior Validation**
+  
+  - Test cluster scaling with the new instance type with upscaling and downscaling.
+    - Cluster scales up and down based on workload demands.
+    - No delays in node provisioning or pod scheduling.
 
-  -
-  - New instance type meets performance requirements with lower or acceptable cost.
-  - No unexpected resource over-provisioning or wastage.
+
+
+> Cost Efficiency Validation
+  
+  - Assess the cost impact of moving to the new instance type.
+    - New instance type meets performance requirements with lower or acceptable cost.
+    - No unexpected resource over-provisioning or wastage.
 
 
 
